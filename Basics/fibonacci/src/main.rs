@@ -1,5 +1,10 @@
+#[warn(dead_code)]
 fn fibonacci(n: u32) -> u32 {
-    todo!("Implementar fibonacci aqui")
+    //todo!("Implementar fibonacci aqui")
+    if n == 0 || n == 1 {
+        return n;
+    }
+    fibonacci(n - 1) + fibonacci(n - 2)
 }
 
 #[cfg(test)]

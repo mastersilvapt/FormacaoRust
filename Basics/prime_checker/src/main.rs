@@ -1,7 +1,16 @@
 fn main() {}
 
 fn check_if_prime(n: u32) -> bool {
-    todo!("Implementar check_if_prime aqui")
+    //todo!("Implementar check_if_prime aqui")
+    if n <= 1 {
+        return false;
+    }
+    for i in 2..=n.isqrt() {
+        if n % i == 0 {
+            return false;
+        }
+    }
+    true
 }
 
 #[cfg(test)]
