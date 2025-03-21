@@ -23,7 +23,27 @@ fn calculator(input: &str) -> Option<i32> {
     }
 }
 
+/// Desafio da calculadora
+/// Pode ser implementado com recurso à analise de apenas
+/// uma string ou com cada elemento separado na sua propria string.
+/// Podem ver exemplos de como vai ser utilizada a função nos testes disponíveis.
+///
+/// Devem apenas implementar uma das funções.
+///
+/// Podem comentar a função que não vão implementar para não haver problemas de compilação, incluindo os testes
+/// para a mesma.
+
 fn main() {
+    todo!("Implementar a leitura do stdin")
+}
+
+
+fn calculator_str(string: &str) -> i32 {
+    todo!("Implementar a calculadora que de uma string calcule o resultado")
+}
+
+fn calculator_str_list(string: &[&str]) -> i32 {
+    todo!("Implementar a calculadora que de uma string ou de uma lista de strings calcule o resultado")
     let mut input = String::new();
 
     loop {
@@ -33,7 +53,7 @@ fn main() {
         input.clear();
         stdin().read_line(&mut input).unwrap();
         input = input.trim().replace(" ", "");
-        
+
         if input.eq_ignore_ascii_case("exit") {
             break;
         }
@@ -45,46 +65,23 @@ fn main() {
     }
 }
 
-
 #[cfg(test)]
-mod tests {
+pub mod calculator_test {
+
     #[test]
-    fn simple() {
-        assert_eq!(super::calculator("2 + 2"), Some(4));
-        assert_eq!(super::calculator("2 - 2"), Some(0));
-        assert_eq!(super::calculator("2 * 2"), Some(4));
-        assert_eq!(super::calculator("2 / 2"), Some(1));
+    fn test_calculator_str() {
+        assert_eq!(super::calculator_str("1 + 1"), 2);
+        assert_eq!(super::calculator_str("2 * 2"), 4);
+        assert_eq!(super::calculator_str("2 / 2"), 1);
+        assert_eq!(super::calculator_str("2 - 2"), 0);
     }
-    
+
     #[test]
-    fn negative_numbers(){
-        assert_eq!(super::calculator("-2 + 2"), Some(0));
-        assert_eq!(super::calculator("-2 - 2"), Some(-4));
-        assert_eq!(super::calculator("-2 * 2"), Some(-4));
-        assert_eq!(super::calculator("-2 / 2"), Some(-1));
-        
-        assert_eq!(super::calculator("2 + -2"), Some(0));
-        assert_eq!(super::calculator("2 - -2"), Some(4));
-        assert_eq!(super::calculator("2 * -2"), Some(-4));
-        assert_eq!(super::calculator("2 / -2"), Some(-1));
-        
-        assert_eq!(super::calculator("-2 + -2"), Some(-4));
-        assert_eq!(super::calculator("-2 - -2"), Some(0));
-        assert_eq!(super::calculator("-2 * -2"), Some(4));
-        assert_eq!(super::calculator("-2 / -2"), Some(1));
+    fn test_calculator_str_list() {
+        assert_eq!(super::calculator_str_list(&vec!["2", "*", "3"]), 6);
+        assert_eq!(super::calculator_str_list(&vec!["2", "+", "3"]), 5);
+        assert_eq!(super::calculator_str_list(&vec!["3", "-", "2"]), 0);
+        assert_eq!(super::calculator_str_list(&vec!["6", "/", "3"]), 2);
     }
-    
-    #[test]
-    fn malformed_input() {
-        assert_eq!(super::calculator("1b5"), None);
-        assert_eq!(super::calculator("-1b5"), None);
-        assert_eq!(super::calculator("-2147483648"), None);
-        assert_eq!(super::calculator("-1e5"), None);
-        assert_eq!(super::calculator("+inf"), None);
-        assert_eq!(super::calculator("-inf"), None);
-        assert_eq!(super::calculator("+123"), None);
-        assert_eq!(super::calculator("-123"), None);
-        assert_eq!(super::calculator("+123k"), None);
-        assert_eq!(super::calculator("54-b"), None);
-    }
+
 }
