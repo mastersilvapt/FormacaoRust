@@ -1,11 +1,30 @@
 
 
 fn array_mut_ownership(array: [u32; 5], operation: char, other_member: u32) -> [u32; 5] {
-    todo!()
+    let mut new_array: [u32; 5] = [0; 5];
+    
+    for (i,val) in array.iter().enumerate() {
+        match operation { 
+            '+' => new_array[i] = val + other_member,
+            '-' => new_array[i] = val - other_member,
+            '*' => new_array[i] = val * other_member,
+            '/' => new_array[i] = val / other_member,
+            _ => {} 
+        }
+    }
+    new_array
 }
 
 fn array_mut_mut(array: &mut [u32], operation: char, other_member: u32) {
-    todo!()
+    for i  in 0..array.len() {
+        match operation { 
+            '+' => array[i] = array[i] + other_member,
+            '-' => array[i] = array[i] - other_member,
+            '*' => array[i] = array[i] * other_member,
+            '/' => array[i] = array[i] / other_member,
+            _ => {} 
+        }
+    }
 }
 
 #[cfg(test)]
