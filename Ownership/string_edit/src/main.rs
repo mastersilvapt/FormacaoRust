@@ -76,42 +76,7 @@ impl Operation {
         println!("\t9 - Back");
         println!();
     }
-
-    fn cipher(c: &u8, k: u8) -> char {
-        if c.is_ascii_uppercase() {
-            let b = 'A' as u8;
-            (b + ((c-b + k-b) % 26)) as char
-        }else if c.is_ascii_lowercase() {
-            let b = 'a' as u8;
-            (b + ((c-b + k-b) % 26)) as char
-        }else {
-            *c as char
-        }
-    }
     
-    fn decipher(c: &u8, k: u8) -> char {
-        if c.is_ascii_uppercase() {
-            let b = 'A' as u8;
-            let mut c = c-b;
-            let mut k = k-b;
-            if c < k {
-                k = k-c;
-                c = 26;
-            }
-            (b + ((c - k) % 26)) as char 
-        }else if c.is_ascii_lowercase() {
-            let b = 'a' as u8;
-            let mut c = c-b;
-            let mut k = k-b;
-            if c < k {
-                k = k-c;
-                c = 26;
-            }
-            (b + ((c - k) % 26)) as char
-        }else {
-            *c as char
-        }
-    }
     fn apply(&self, input: &str) -> String {
         let mut input = input.to_string();
         match &self {
@@ -134,22 +99,50 @@ impl Operation {
                 input = input.to_string().to_lowercase();
             }
             Operation::VigenereCipher(key) => {
-                let mut res = String::with_capacity(input.len());
-                let key = key.as_bytes();
-                let input_bytes = input.as_bytes();
-                for (i, c) in input_bytes.iter().enumerate() {
-                    res.push(Operation::cipher(c, key[i % key.len()]));
-                }
-                input = res.to_string()
+                let input_caps = input.chars();
+                let key = key.chars();
+                
+                input = input_caps.zip(key)
+                    .map(|(c, k)| 
+                        (c.to_ascii_uppercase(), k.to_ascii_uppercase()))
+                    .map(|(c,k)| {
+                        (
+                            if c == ' ' { c as u8 } else { (c as u8) - ('A' as u8) }, 
+                            (k as u8) - ('A' as u8)
+                        )
+                    })
+                    .map(|(c,k)| {
+                        if c == ' ' as u8 { c } else { (c+k) % 26 }
+                    })
+                    .map(|e| {
+                        if e == ' ' as u8 { e } else { e + ('A' as u8) }
+                    })
+                    .map(|e| e as char)
+                    .collect::<String>();
             }
             Operation::VigenereDecipher(key) => {
-                let mut res = String::with_capacity(input.len());
-                let key = key.as_bytes();
-                let input_bytes = input.as_bytes();
-                for (i, c) in input_bytes.iter().enumerate() {
-                    res.push(Operation::decipher(c, key[i % key.len()]));
-                }
-                input = res.to_string()
+                let cipher_text = input.chars();
+                let key = key.chars();
+                
+                input = cipher_text.zip(key)
+                    .map(|(c,k)| 
+                        (c.to_ascii_uppercase(), k.to_ascii_uppercase()))
+                    .map(|(c,k)| {
+                        (
+                            if c == ' ' { c as u8 } else { (c as u8) - ('A' as u8) },
+                            (k as u8) - ('A' as u8)
+                        )
+                    })
+                    .map(|(c,k)| {
+                        if c == ' ' as u8 { c } else { (c + 26 - k) % 26 }
+                    })
+                    .map(|t| {
+                        if t == ' ' as u8 { t } else { t + ('A' as u8) }
+                    })
+                    .map(|t| {
+                        t as char
+                    })
+                    .collect::<String>();
             }
         };
         println!("R> {input}");
