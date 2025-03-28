@@ -45,7 +45,7 @@ impl FromStr for Operation {
             "Uppercase" => Ok(Operation::Uppercase()),
             "Lowercase" => Ok(Operation::Lowercase()),
             "Vigenere" => {
-                match splits.next().unwrap() { 
+                match splits.next().unwrap() {
                     "cipher" => {
                         let key = &s[16..s.len()];
                         Ok(Operation::VigenereCipher(key.to_string()))
@@ -76,7 +76,7 @@ impl Operation {
         println!("\t9 - Back");
         println!();
     }
-    
+
     fn apply(&self, input: &str) -> String {
         let mut input = input.to_string();
         match &self {
@@ -101,13 +101,13 @@ impl Operation {
             Operation::VigenereCipher(key) => {
                 let input_caps = input.chars();
                 let key = key.chars();
-                
+
                 input = input_caps.zip(key)
-                    .map(|(c, k)| 
+                    .map(|(c, k)|
                         (c.to_ascii_uppercase(), k.to_ascii_uppercase()))
                     .map(|(c,k)| {
                         (
-                            if c == ' ' { c as u8 } else { (c as u8) - ('A' as u8) }, 
+                            if c == ' ' { c as u8 } else { (c as u8) - ('A' as u8) },
                             (k as u8) - ('A' as u8)
                         )
                     })
@@ -123,9 +123,9 @@ impl Operation {
             Operation::VigenereDecipher(key) => {
                 let cipher_text = input.chars();
                 let key = key.chars();
-                
+
                 input = cipher_text.zip(key)
-                    .map(|(c,k)| 
+                    .map(|(c,k)|
                         (c.to_ascii_uppercase(), k.to_ascii_uppercase()))
                     .map(|(c,k)| {
                         (

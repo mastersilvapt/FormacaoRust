@@ -2,6 +2,10 @@ fn mut_array_iterator(array: &mut [u32], operação: char, outro_membro: u32) {
     todo!()
 }
 
+fn main() {
+
+}
+
 #[cfg(test)]
 mod mutable_array_test {
     const OWNERSHIP_TEST_ARRAY: [u32; 5] = [1, 2, 3, 4, 5];
