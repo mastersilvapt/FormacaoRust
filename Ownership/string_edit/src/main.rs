@@ -107,15 +107,15 @@ impl Operation {
                         (c.to_ascii_uppercase(), k.to_ascii_uppercase()))
                     .map(|(c,k)| {
                         (
-                            if c == ' ' { c as u8 } else { (c as u8) - ('A' as u8) },
-                            (k as u8) - ('A' as u8)
+                            if c == ' ' { c as u8 } else { (c as u8) - b'A' },
+                            (k as u8) - b'A'
                         )
                     })
                     .map(|(c,k)| {
-                        if c == ' ' as u8 { c } else { (c+k) % 26 }
+                        if c == b' ' { c } else { (c+k) % 26 }
                     })
                     .map(|e| {
-                        if e == ' ' as u8 { e } else { e + ('A' as u8) }
+                        if e == b' ' { e } else { e + b'A' }
                     })
                     .map(|e| e as char)
                     .collect::<String>();
@@ -129,15 +129,15 @@ impl Operation {
                         (c.to_ascii_uppercase(), k.to_ascii_uppercase()))
                     .map(|(c,k)| {
                         (
-                            if c == ' ' { c as u8 } else { (c as u8) - ('A' as u8) },
-                            (k as u8) - ('A' as u8)
+                            if c == ' ' { c as u8 } else { (c as u8) - b'A' },
+                            (k as u8) - b'A'
                         )
                     })
                     .map(|(c,k)| {
-                        if c == ' ' as u8 { c } else { (c + 26 - k) % 26 }
+                        if c == b' ' { c } else { (c + 26 - k) % 26 }
                     })
                     .map(|t| {
-                        if t == ' ' as u8 { t } else { t + ('A' as u8) }
+                        if t == b' ' { t } else { t + b'A' }
                     })
                     .map(|t| {
                         t as char

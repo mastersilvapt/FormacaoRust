@@ -58,6 +58,7 @@ fn calculator_str(string: &str) -> i32 {
     //to do!("Implementar a calculadora que de uma string calcule o resultado")
 }
 
+#[allow(dead_code)]
 fn calculator_str_list(string: &[&str]) -> i32 {
     //to do!("Implementar a calculadora que de uma string ou de uma lista de strings calcule o resultado")
 

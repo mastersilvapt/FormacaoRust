@@ -1,4 +1,4 @@
-#[warn(dead_code)]
+#[allow(dead_code)]
 fn fibonacci(n: u32) -> u32 {
     //todo!("Implementar fibonacci aqui")
     if n == 0 || n == 1 {

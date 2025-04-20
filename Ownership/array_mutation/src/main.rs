@@ -1,5 +1,6 @@
 
 
+#[allow(dead_code)]
 fn array_mut_ownership(array: [u32; 5], operation: char, other_member: u32) -> [u32; 5] {
     let mut new_array: [u32; 5] = [0; 5];
     
@@ -15,17 +16,20 @@ fn array_mut_ownership(array: [u32; 5], operation: char, other_member: u32) -> [
     new_array
 }
 
+#[allow(dead_code)]
 fn array_mut_mut(array: &mut [u32], operation: char, other_member: u32) {
     for i  in 0..array.len() {
         match operation { 
-            '+' => array[i] = array[i] + other_member,
-            '-' => array[i] = array[i] - other_member,
-            '*' => array[i] = array[i] * other_member,
-            '/' => array[i] = array[i] / other_member,
+            '+' => array[i] += other_member,
+            '-' => array[i] -= other_member,
+            '*' => array[i] *= other_member,
+            '/' => array[i] /= other_member,
             _ => {} 
         }
     }
 }
+
+fn main() {}
 
 #[cfg(test)]
 mod array_mutation_test {
@@ -68,5 +72,3 @@ mod array_mutation_test {
     }
 
 }
-
-fn main() {}

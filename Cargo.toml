@@ -1,0 +1,23 @@
+[workspace]
+resolver = "2"
+members = [
+    "Basics/calculator",
+    "Basics/guessing_game",
+    "Basics/prime_checker",
+    "Basics/fibonacci",
+    "Traits_Genericos/stack_generica",
+    "Traits_Genericos/sorting_generico",
+    "Traits_Genericos/merceria_4",
+    "Enums/formas_geometricas",
+    "Enums/livraria_3",
+    "Estruturas&Iteradores/achatar_deduplicar_filtrar",
+    "Estruturas&Iteradores/livraria_2",
+    "Estruturas&Iteradores/mutação_arrays_random",
+    "Estruturas&Iteradores/merceria_2",
+    "Ownership/array_mutation",
+    "Ownership/string_edit",
+    "Structs/livraria",
+    "Structs/mercearia",
+    "Nulabilidade_Erros/livraria_4",
+    "Nulabilidade_Erros/mercearia_3",
+]

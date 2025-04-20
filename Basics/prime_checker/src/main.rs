@@ -1,5 +1,6 @@
 fn main() {}
 
+#[allow(dead_code)]
 fn check_if_prime(n: u32) -> bool {
     //todo!("Implementar check_if_prime aqui")
     if n <= 1 {
