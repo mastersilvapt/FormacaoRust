@@ -3,7 +3,7 @@ use std::str::{FromStr};
 
 enum Operation {
     Set(String),
-    Clear,
+    Clear(),
     Remove(usize),
     Insert(usize, String),
     Uppercase(),
@@ -23,7 +23,7 @@ impl FromStr for Operation {
                 let string = &s[4..s.len()];
                 Ok(Operation::Set(string.to_string()))
             }
-            "Clear" => Ok(Operation::Clear),
+            "Clear" => Ok(Operation::Clear()),
             "Remove" => {
                 let idx = splits
                     .next()
@@ -83,7 +83,7 @@ impl Operation {
             Operation::Set(s) => {
                 input = s.to_string();
             }
-            Operation::Clear => {
+            Operation::Clear() => {
                 input.clear();
             }
             Operation::Remove(idx) => {

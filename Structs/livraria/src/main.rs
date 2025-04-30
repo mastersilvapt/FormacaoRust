@@ -94,7 +94,7 @@ impl Library {
                 let isbn = read_valid_stdin("ISBN>", |input| Ok(input.trim().to_string()));
                 let name = read_valid_stdin("NAME>", |input| Ok(input.trim().to_string()));
                 
-                let book = self.lib.iter_mut().find(|(x,n)| x.isbn == isbn);
+                let book = self.lib.iter_mut().find(|(x,_)| x.isbn == isbn);
                 if book.is_none(){
                     return false;
                 }

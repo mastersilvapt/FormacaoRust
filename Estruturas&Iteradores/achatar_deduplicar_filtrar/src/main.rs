@@ -1,5 +1,14 @@
+use std::collections::HashSet;
+
+#[allow(dead_code)]
 fn achatar_deduplicar_filtrar(v: Vec<Vec<u32>>) -> Vec<u32> {
-    todo!("Implemente aqui a logica de achatamento, deduplicacao e filtragem")
+    v.iter()
+        .flatten()
+        .collect::<HashSet<&u32>>()
+        .into_iter()
+        .filter(|x| **x % 2 == 0 || **x % 3 == 0)
+        .copied()
+        .collect::<Vec<u32>>()
 }
 
 fn main() {}

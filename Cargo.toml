@@ -20,4 +20,5 @@ members = [
     "Structs/mercearia",
     "Nulabilidade_Erros/livraria_4",
     "Nulabilidade_Erros/mercearia_3",
+    "utils",
 ]

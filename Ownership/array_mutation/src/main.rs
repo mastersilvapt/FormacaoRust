@@ -18,12 +18,12 @@ fn array_mut_ownership(array: [u32; 5], operation: char, other_member: u32) -> [
 
 #[allow(dead_code)]
 fn array_mut_mut(array: &mut [u32], operation: char, other_member: u32) {
-    for i  in 0..array.len() {
+    for val in array.iter_mut() {
         match operation { 
-            '+' => array[i] += other_member,
-            '-' => array[i] -= other_member,
-            '*' => array[i] *= other_member,
-            '/' => array[i] /= other_member,
+            '+' => *val += other_member,
+            '-' => *val -= other_member,
+            '*' => *val *= other_member,
+            '/' => *val /= other_member,
             _ => {} 
         }
     }

@@ -1,5 +1,15 @@
-fn mut_array_iterator(array: &mut [u32], operação: char, outro_membro: u32) {
-    todo!()
+
+#[allow(dead_code)]
+fn mut_array_iterator(array: &mut [u32], operacao: char, outro_membro: u32) {
+    array.iter_mut().for_each(|x| {
+        match operacao {
+            '+' => *x += outro_membro,
+            '-' => *x -= outro_membro,
+            '*' => *x *= outro_membro,
+            '/' => *x /= outro_membro,
+            _ => (),
+        }
+    });
 }
 
 fn main() {

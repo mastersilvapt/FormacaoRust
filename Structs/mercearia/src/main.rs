@@ -3,8 +3,8 @@ use std::io::Write;
 #[derive(Clone, Debug)]
 struct Product {
     id: u32,
-    name: String,
-    expiration: String,
+    _name: String,
+    _expiration: String,
     price: f64,
     quantity: usize,
 }
@@ -36,7 +36,7 @@ impl Supermarket {
                 for(k, opt) in prateleira.iter().enumerate() {
                     match opt {  
                         Some(prod) => {
-                           if(prod.id == id) {
+                           if prod.id == id {
                                return Ok((i, j, k));
                            } 
                         }
@@ -176,8 +176,8 @@ impl Supermarket {
 
                 Ok(Command::AddProduct(fila, prateleira, zona, Product { 
                     id: product_id, 
-                    name: product_name.to_string(), 
-                    expiration: product_date.to_string(), 
+                    _name: product_name.to_string(), 
+                    _expiration: product_date.to_string(), 
                     price: product_price,
                     quantity: product_quantity 
                 }))
@@ -225,9 +225,9 @@ impl Supermarket {
 fn main() {
     let mut supermarket = Supermarket::new();
     
-    let _ = supermarket.apply(Command::AddProduct(1,5,6, Product { id: 123, name: "test1".to_string(), expiration: "12/05/25".to_string(), price: 5.32, quantity: 1 }));
-    let _ = supermarket.apply(Command::AddProduct(6,2,4, Product { id: 234, name: "test2".to_string(), expiration: "13/06/26".to_string(), price: 15.32, quantity: 5 }));
-    let _ = supermarket.apply(Command::AddProduct(2,6,2, Product { id: 345, name: "test3".to_string(), expiration: "14/07/27".to_string(), price: 7.87, quantity: 2 }));
+    let _ = supermarket.apply(Command::AddProduct(1,5,6, Product { id: 123, _name: "test1".to_string(), _expiration: "12/05/25".to_string(), price: 5.32, quantity: 1 }));
+    let _ = supermarket.apply(Command::AddProduct(6,2,4, Product { id: 234, _name: "test2".to_string(), _expiration: "13/06/26".to_string(), price: 15.32, quantity: 5 }));
+    let _ = supermarket.apply(Command::AddProduct(2,6,2, Product { id: 345, _name: "test3".to_string(), _expiration: "14/07/27".to_string(), price: 7.87, quantity: 2 }));
     
     loop{
         supermarket.help();
